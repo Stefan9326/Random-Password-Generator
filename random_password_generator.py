@@ -9,11 +9,11 @@
 # - create a GUI for the program
 
 import random
+import string
 
-alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
-            'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-alphabet_upper = [i.upper() for i in alphabet]
-numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+alphabet = list(string.ascii_lowercase)
+alphabet_upper = list(string.ascii_uppercase)
+numbers = [str(i) for i in range(10)]
 symbols = ['!', '@' , '#', '$', '%', '&', '*', '_', '-' , '?', '!', '@' , '#', '$', '%', '&', '*', '_', '-' , '?']
 
 
@@ -42,20 +42,23 @@ def ask_user_input():
 
     generate_password(characters, password_length)
 
-
-def main():
-
-    print("Welcome to Stef's Random Password Generator!!\n\n")
-
+def foo():
     user_input = None
     while user_input != "G" and user_input != "Q":
         user_input = input("Enter (G) to generate a new random password or (Q) to quit: ").upper()
         if user_input == "G":
-            run = True
+            return True
         elif user_input == "Q":
-            run = False
+            return False
         else:   
             print("Invalid user input")
+
+
+def main():
+
+    print("Welcome to Stef's Random Password Generator!!\n\n")
+    run = foo()
+   
     
     while run:
         ask_user_input()
