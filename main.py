@@ -15,6 +15,23 @@ alphabet = list(string.ascii_lowercase)
 alphabet_upper = list(string.ascii_uppercase)
 numbers = [str(i) for i in range(10)]
 symbols = ['!', '@' , '#', '$', '%', '&', '*', '_', '-' , '?', '!', '@' , '#', '$', '%', '&', '*', '_', '-' , '?']
+generate_or_quit = "Press (G) to generate a new random password or (Q) to quit: "
+try_again = "Press (G) to try again or (Q) to quit: "
+password_numbers = "Would you like your new password to contain numbers? (Y/N): "
+password_uppers = "Would you like your new password to contain uppercase letters? (Y/N): "
+password_symbols = "Would you like your new password to contain symbols? (Y/N): "
+
+
+def user_choice(choices, a, b):
+    user_input = None
+    while user_input != a and user_input != b:
+        user_input = input(choices).upper()
+        if user_input == a:
+            return True
+        elif user_input == b:
+            return False
+        else:   
+            print("Invalid user input")
 
 
 def generate_password(password_characters, password_length):
@@ -26,45 +43,27 @@ def generate_password(password_characters, password_length):
     print("This is your new password: {}".format(''.join(new_password)))
     
 
-def ask_user_input():
+def password_choices():
     characters = alphabet
 
-    password_numbers = input("Would you like your new password to contain numbers? (Y/N): ").upper()
-    password_uppers = input("Would you like your new password to contain uppercase letters? (Y/N): ").upper()
-    password_symbols = input("Would you like your new password to contain symbols? (Y/N): ").upper()
-    if password_numbers == "Y":
+    if user_choice(password_numbers, "Y", "N"):
         characters += numbers
-    if password_uppers == "Y":
+    if user_choice(password_uppers, "Y", "N"):
         characters += alphabet_upper
-    if password_symbols == "Y":
+    if user_choice(password_symbols, "Y", "N"):
         characters += symbols
     password_length = int(input("Please state how many characters long you would like your new password to be: "))
 
     generate_password(characters, password_length)
 
-def foo():
-    user_input = None
-    while user_input != "G" and user_input != "Q":
-        user_input = input("Enter (G) to generate a new random password or (Q) to quit: ").upper()
-        if user_input == "G":
-            return True
-        elif user_input == "Q":
-            return False
-        else:   
-            print("Invalid user input")
-
 
 def main():
 
     print("Welcome to Stef's Random Password Generator!!\n\n")
-    run = foo()
-   
-    
+    run = user_choice(generate_or_quit, "G", "Q")
     while run:
-        ask_user_input()
-        try_again = input("Press (G) to generate a different password or (Q) to quit: ").upper()
-        if try_again == "Q":
-            run = False
+        password_choices()
+        run = user_choice(try_again, "G", "Q")
 
 
 if __name__ == '__main__':
