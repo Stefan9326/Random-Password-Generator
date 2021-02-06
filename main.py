@@ -15,6 +15,7 @@ alphabet = list(string.ascii_lowercase)
 alphabet_upper = list(string.ascii_uppercase)
 numbers = [str(i) for i in range(10)]
 symbols = ['!', '@' , '#', '$', '%', '&', '*', '_', '-' , '?', '!', '@' , '#', '$', '%', '&', '*', '_', '-' , '?']
+
 generate_or_quit = "Press (G) to generate a new random password or (Q) to quit: "
 try_again = "Press (G) to try again or (Q) to quit: "
 password_numbers = "Would you like your new password to contain numbers? (Y/N): "
